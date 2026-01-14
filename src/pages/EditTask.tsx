@@ -1,17 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Task } from "../types/task";
+import { useTaskContext } from "../context/TaskContext";
 
-interface Props {
-  tasks: Task[];
-  updateTask: (task: Task) => void;
-  deleteTask: (id: string) => void;
-}
-
-const EditTask = ({ tasks, updateTask, deleteTask }: Props) => {
+const EditTask = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
+  const { tasks, updateTask, deleteTask } = useTaskContext();
   const [task, setTask] = useState<Task | null>(null);
 
   useEffect(() => {

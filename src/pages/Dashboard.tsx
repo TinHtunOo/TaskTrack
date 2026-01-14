@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import TaskList from "../components/TaskList";
-import type { Task } from "../types/task";
+import { useTaskContext } from "../context/TaskContext";
 
-interface Props {
-  tasks: Task[];
-}
-
-const Dashboard = ({ tasks }: Props) => {
+const Dashboard = () => {
+  const { tasks } = useTaskContext();
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold">Dashboard</h1>

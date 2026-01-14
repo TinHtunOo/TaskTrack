@@ -2,14 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import type { Task } from "../types/task";
+import { useTaskContext } from "../context/TaskContext";
 
-interface Props {
-  addTask: (task: Task) => void;
-}
-
-const CreateTask = ({ addTask }: Props) => {
+const CreateTask = () => {
   const navigate = useNavigate();
-
+  const { addTask } = useTaskContext();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Task["priority"]>("medium");
