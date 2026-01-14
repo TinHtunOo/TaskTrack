@@ -19,7 +19,7 @@ const EditTask = ({ tasks, updateTask, deleteTask }: Props) => {
     if (found) {
       setTask(found);
     } else {
-      // navigate("/");
+      navigate("/");
     }
   }, [id, tasks, navigate]);
 
