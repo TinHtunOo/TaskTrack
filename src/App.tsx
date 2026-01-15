@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import CreateTask from "./pages/CreateTask";
 import EditTask from "./pages/EditTask";
+import "tailwindcss";
 
 function App() {
   return (

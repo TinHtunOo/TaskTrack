@@ -1,5 +1,5 @@
 import type { Task } from "../types/task";
-import TaskCard from "./TaskCard";
+import TaskItem from "./TaskItem";
 
 interface Props {
   tasks: Task[];
@@ -8,16 +8,14 @@ interface Props {
 const TaskList = ({ tasks }: Props) => {
   if (tasks.length === 0) {
     return (
-      <p className="text-gray-500 mt-6">
-        No tasks yet. Create one to get started.
-      </p>
+      <div className="mt-12 text-center text-gray-500">No tasks found</div>
     );
   }
 
   return (
-    <div className="grid gap-4 mt-6">
+    <div className="mt-6 border rounded-md divide-y">
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
+        <TaskItem key={task.id} task={task} />
       ))}
     </div>
   );

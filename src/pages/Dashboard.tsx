@@ -1,9 +1,9 @@
 import { Link, useSearchParams } from "react-router-dom";
-import TaskList from "../components/TaskList";
 import { useTaskContext } from "../context/TaskContext";
 import TaskFilter from "../components/TaskFilter";
 import type { Task } from "../types/task";
 import { filterAndSortTasks } from "../utils/taskFilter";
+import KanbanBoard from "../components/KanbanBoard";
 
 const Dashboard = () => {
   const { tasks } = useTaskContext();
@@ -51,7 +51,7 @@ const Dashboard = () => {
         sort={sort}
         setSort={(v) => updateParams("sort", v)}
       />
-      <TaskList tasks={filteredTasks} />
+      <KanbanBoard tasks={filteredTasks} />
     </div>
   );
 };
