@@ -13,10 +13,8 @@ const EditTask = () => {
     const found = tasks.find((t) => t.id === id);
     if (found) {
       setTask(found);
-    } else {
-      navigate("/");
     }
-  }, [id, tasks, navigate]);
+  }, [id, tasks]);
 
   if (!task) return null;
 

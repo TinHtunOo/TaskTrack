@@ -1,67 +1,64 @@
 import type { Task } from "../types/task";
 
 interface Props {
-  search: string;
-  setSearch: (v: string) => void;
-  status: Task["status"] | "all";
-  setStatus: (v: Task["status"] | "all") => void;
   priority: Task["priority"] | "all";
   setPriority: (v: Task["priority"] | "all") => void;
   sort: string;
   setSort: (v: string) => void;
 }
 
-const TaskFilter = ({
-  search,
-  setSearch,
-  status,
-  setStatus,
-  priority,
-  setPriority,
-  sort,
-  setSort,
-}: Props) => {
+const priorityOptions = [
+  { value: "all", label: "all" },
+  { value: "low", label: "low" },
+  { value: "medium", label: "medium" },
+  { value: "high", label: "high" },
+];
+
+const sortOptions = [
+  { value: "created-desc", label: "newest first" },
+  { value: "created-asc", label: "oldest first" },
+  { value: "priority-desc", label: "high priority first" },
+  { value: "priority-asc", label: "low priority first" },
+];
+
+const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
   return (
-    <div className="flex flex-col md:flex-row gap-4 mt-6">
-      <input
-        type="text"
-        placeholder="Search tasks..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 rounded w-full"
-      />
-
-      <select
-        value={status}
-        onChange={(e) => setStatus(e.target.value as Task["status"])}
-        className="border p-2 rounded"
-      >
-        <option value="all">All Status</option>
-        <option value="todo">To Do</option>
-        <option value="in-progress">In Progress</option>
-        <option value="completed">Completed</option>
-      </select>
-
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as Task["priority"])}
-        className="border p-2 rounded"
-      >
-        <option value="all">All Priority</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-      <select
-        value={sort}
-        onChange={(e) => setSort(e.target.value)}
-        className="border p-2 rounded"
-      >
-        <option value="created-desc">Newest first</option>
-        <option value="created-asc">Oldest first</option>
-        <option value="priority-desc">High priority first</option>
-        <option value="priority-asc">Low priority first</option>
-      </select>
+    <div className="flex flex-col gap-4 mt-15 w-45">
+      <div className="flex flex-col ">
+        <label className="font-semibold mb-2">Priority:</label>
+        {priorityOptions.map((option) => (
+          <label
+            key={option.value}
+            className="flex items-center  text-sm gap-2 "
+          >
+            <input
+              type="radio"
+              name="priority"
+              value={option.value}
+              checked={priority === option.value}
+              onChange={(e) =>
+                setPriority(e.target.value as Task["priority"] | "all")
+              }
+            />
+            {option.label}
+          </label>
+        ))}
+      </div>
+      <div className="flex flex-col">
+        <label className="font-semibold mb-2">Sort:</label>
+        {sortOptions.map((option) => (
+          <label key={option.value} className="flex items-center text-sm gap-2">
+            <input
+              type="radio"
+              name="sort"
+              value={option.value}
+              checked={sort === option.value}
+              onChange={(e) => setSort(e.target.value)}
+            />
+            {option.label}
+          </label>
+        ))}
+      </div>
     </div>
   );
 };

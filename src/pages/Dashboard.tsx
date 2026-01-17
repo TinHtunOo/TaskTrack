@@ -4,6 +4,7 @@ import TaskFilter from "../components/TaskFilter";
 import type { Task } from "../types/task";
 import { filterAndSortTasks } from "../utils/taskFilter";
 import KanbanBoard from "../components/KanbanBoard";
+import SearchBar from "../components/SearchBar";
 
 const Dashboard = () => {
   const { tasks } = useTaskContext();
@@ -35,23 +36,31 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="text-gray-600 mb-10">Your tasks will appear here.</p>
-      <Link to="/task/new" className="bg-black text-white px-4 py-2 rounded">
-        + New Task
-      </Link>
-      <TaskFilter
-        search={search}
-        setSearch={(v) => updateParams("search", v)}
-        status={status}
-        setStatus={(v) => updateParams("status", v)}
-        priority={priority}
-        setPriority={(v) => updateParams("priority", v)}
-        sort={sort}
-        setSort={(v) => updateParams("sort", v)}
-      />
-      <KanbanBoard tasks={filteredTasks} />
+    <div className=" flex ">
+      <div className=" border-r border-gray-400 p-6 min-h-screen">
+        <h1 className="text-2xl font-bold ">Task Track</h1>
+        <TaskFilter
+          priority={priority}
+          setPriority={(v) => updateParams("priority", v)}
+          sort={sort}
+          setSort={(v) => updateParams("sort", v)}
+        />
+      </div>
+      <div className="w-full p-6">
+        <div className=" flex items-center justify-center mb-10">
+          <SearchBar
+            search={search}
+            setSearch={(v) => updateParams("search", v)}
+          />
+          <Link
+            to="/task/new"
+            className="bg-black inline-block text-white px-4 py-2 rounded"
+          >
+            + New Task
+          </Link>
+        </div>
+        <KanbanBoard tasks={filteredTasks} />
+      </div>
     </div>
   );
 };
