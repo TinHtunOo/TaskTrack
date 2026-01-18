@@ -6,9 +6,10 @@ interface Props {
   id: string;
   title: string;
   tasks: Task[];
+  onEditTask: (taskId: string) => void;
 }
 
-const KanbanColumn = ({ id, title, tasks }: Props) => {
+const KanbanColumn = ({ id, title, tasks, onEditTask }: Props) => {
   const { setNodeRef, isOver } = useDroppable({
     id,
   });
@@ -28,13 +29,13 @@ const KanbanColumn = ({ id, title, tasks }: Props) => {
           id === "todo"
             ? "border-gray-400"
             : id === "in-progress"
-            ? "border-blue-400"
-            : "border-green-400"
+              ? "border-blue-400"
+              : "border-green-400"
         }`}
       ></span>
       <div className="space-y-2">
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} />
+          <TaskItem key={task.id} task={task} onEditTask={onEditTask} />
         ))}
       </div>
     </div>

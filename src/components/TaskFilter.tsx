@@ -25,11 +25,14 @@ const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
   return (
     <div className="flex flex-col gap-4 mt-15 w-45">
       <div className="flex flex-col ">
-        <label className="font-semibold mb-2">Priority:</label>
+        <label className="font-semibold mb-2 flex items-center gap-2">
+          Priority{" "}
+          <span className="border inline-block w-full border-gray-400"></span>
+        </label>
         {priorityOptions.map((option) => (
           <label
             key={option.value}
-            className="flex items-center  text-sm gap-2 "
+            className="flex items-center  text-sm gap-2 mb-1 "
           >
             <input
               type="radio"
@@ -39,21 +42,29 @@ const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
               onChange={(e) =>
                 setPriority(e.target.value as Task["priority"] | "all")
               }
+              className="accent-gray-600"
             />
             {option.label}
           </label>
         ))}
       </div>
       <div className="flex flex-col">
-        <label className="font-semibold mb-2">Sort:</label>
+        <label className="font-semibold mb-2 flex items-center gap-2">
+          Sort{" "}
+          <span className="border inline-block w-full border-gray-400"></span>
+        </label>
         {sortOptions.map((option) => (
-          <label key={option.value} className="flex items-center text-sm gap-2">
+          <label
+            key={option.value}
+            className="flex items-center text-sm gap-2 mb-1"
+          >
             <input
               type="radio"
               name="sort"
               value={option.value}
               checked={sort === option.value}
               onChange={(e) => setSort(e.target.value)}
+              className="accent-gray-600"
             />
             {option.label}
           </label>

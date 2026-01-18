@@ -5,7 +5,7 @@ interface Props {
 
 const SearchBar = ({ search, setSearch }: Props) => {
   return (
-    <div className="flex-1 text-center">
+    <div className="text-center">
       <input
         type="text"
         placeholder="Search tasks..."

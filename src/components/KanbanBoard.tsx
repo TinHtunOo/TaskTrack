@@ -5,6 +5,7 @@ import KanbanColumn from "./KanbanColumn";
 
 interface Props {
   tasks: Task[];
+  onEditTask: (taskId: string) => void;
 }
 
 const columns = [
@@ -13,7 +14,7 @@ const columns = [
   { id: "completed", title: "Done" },
 ] as const;
 
-const KanbanBoard = ({ tasks }: Props) => {
+const KanbanBoard = ({ tasks, onEditTask }: Props) => {
   const { updateTask } = useTaskContext();
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -42,6 +43,7 @@ const KanbanBoard = ({ tasks }: Props) => {
             id={col.id}
             title={col.title}
             tasks={tasks.filter((t) => t.status === col.id)}
+            onEditTask={onEditTask}
           />
         ))}
       </div>
