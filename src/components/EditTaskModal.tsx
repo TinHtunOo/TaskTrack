@@ -43,7 +43,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
     <div>
       <div className="absolute  top-0 left-0 bg-black/20 w-screen h-screen z-0"></div>
 
-      <div className="bg-white absolute rounded-lg top-25 left-0 right-0 m-auto  w-150  z-10">
+      <div className="bg-white absolute rounded-lg top-25 left-0 right-0 m-auto  md:max-w-150 max-w-100 z-60">
         <h2 className="text-sm  mb-4 pt-6 px-6">Edit Task</h2>
         <form onSubmit={handleSubmit}>
           <div className="px-6">
@@ -65,7 +65,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
                 className="w-full rounded text-base h-20 focus:border-none placeholder:text-gray-400 focus:outline-0 "
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <div>
                 <select
                   value={task.status}
@@ -75,7 +75,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
                       status: e.target.value as Task["status"],
                     })
                   }
-                  className="w-fit text-xs border-2 focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
+                  className="w-fit text-xs border-2 hover:cursor-pointer focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
                 >
                   <option value="todo">Todo</option>
                   <option value="in-progress">In Progress</option>
@@ -91,7 +91,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
                       priority: e.target.value as Task["priority"],
                     })
                   }
-                  className="w-fit text-xs border-2 focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
+                  className="w-fit text-xs hover:cursor-pointer border-2 focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
@@ -106,7 +106,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
                   onChange={(e) =>
                     setTask({ ...task, dueDate: e.target.value || undefined })
                   }
-                  className="w-fit text-xs border-2 focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
+                  className="w-fit hover:cursor-pointer text-xs border-2 focus:outline-0 font-semibold border-gray-500 text-gray-700 rounded px-2 py-1 appearance-none text-right"
                 />
               </div>
             </div>

@@ -13,3 +13,7 @@ body {
     color 1s ease,
     border-color 1s ease;
 }
+
+.sideBar {
+  transition: all 1s ease;
+}

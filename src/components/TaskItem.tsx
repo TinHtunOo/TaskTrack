@@ -42,7 +42,7 @@ const TaskItem = ({ task, onEditTask }: Props) => {
       style={style}
       {...attributes}
       className="  rounded-md bg-white dark:bg-gray-800 shadow
-        transition-all group flex justify-between gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700"
+        transition-all group flex justify-between gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-600"
     >
       <div className="flex-1 " {...listeners}>
         <div>

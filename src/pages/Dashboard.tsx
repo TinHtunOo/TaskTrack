@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTaskContext } from "../context/TaskContext";
 import { useTheme } from "../context/ThemeContext";
@@ -9,7 +9,7 @@ import KanbanBoard from "../components/KanbanBoard";
 import SearchBar from "../components/SearchBar";
 import CreateTaskModal from "../components/CreateTaskModal";
 import EditTaskModal from "../components/EditTaskModal";
-import { Plus, Moon, Sun } from "lucide-react";
+import { Plus, Moon, Sun, PanelLeftOpen, PanelRightOpen } from "lucide-react";
 
 const Dashboard = () => {
   const { tasks } = useTaskContext();
@@ -19,6 +19,15 @@ const Dashboard = () => {
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isSidebarOpen, setSiderbarOpen] = useState(false);
+
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isSidebarOpen]);
 
   const search = searchParams.get("search") || "";
   const status =
@@ -45,8 +54,13 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="flex min-h-screen ">
-      <div className="border-r border-gray-300 dark:border-gray-700 p-6 min-h-screen bg-gray-50 dark:bg-gray-800">
+    <div className={`flex min-h-screen relative ${isSidebarOpen ? "" : ""} `}>
+      <div
+        className={`h-screen w-screen absolute top-0 left-0 bg-black/20 ${isSidebarOpen ? "block" : "hidden"} `}
+      ></div>
+      <div
+        className={`md:relative absolute border-r border-gray-300 sideBar   dark:border-gray-700 p-6 min-h-screen -translate-x-60 md:translate-x-0 z-50 bg-gray-50  dark:bg-gray-800 ${isSidebarOpen ? "translate-x-0 " : ""} `}
+      >
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
           Task Track
         </h1>
@@ -56,14 +70,28 @@ const Dashboard = () => {
           sort={sort}
           setSort={(v) => updateParams("sort", v)}
         />
+        <button
+          onClick={() => setSiderbarOpen((open) => !open)}
+          className="bg-gray-200 absolute top-6 right-2 md:hidden hover:cursor-pointer hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 inline-block group p-2 rounded"
+        >
+          <PanelRightOpen size={16} />
+        </button>
       </div>
       <div className="w-full p-6 bg-white dark:bg-gray-900">
-        <div className="relative items-center justify-center mb-10">
+        <div className="relative z-10 items-center justify-center mb-10">
+          <div className="absolute sm:top-0 top-15 left-0 md:hidden block">
+            <button
+              onClick={() => setSiderbarOpen((open) => !open)}
+              className="bg-gray-200  hover:cursor-pointer hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 inline-block group p-2 rounded"
+            >
+              <PanelLeftOpen size={16} />
+            </button>
+          </div>
           <SearchBar
             search={search}
             setSearch={(v) => updateParams("search", v)}
           />
-          <div className="absolute right-0 top-0 flex gap-2">
+          <div className="sm:absolute sm:mt-0 mt-5 right-0 top-0 flex justify-end  gap-2">
             <button
               onClick={toggleDark}
               className="bg-gray-200 hover:cursor-pointer hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 inline-block group p-2 rounded"
@@ -94,6 +122,7 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
+
         <KanbanBoard
           tasks={filteredTasks}
           onEditTask={(taskId) => {
