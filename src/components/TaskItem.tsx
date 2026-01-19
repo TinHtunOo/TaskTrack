@@ -20,7 +20,7 @@ interface Props {
 }
 
 const TaskItem = ({ task, onEditTask }: Props) => {
-  const { deleteTask } = useTaskContext();
+  const { updateTask, deleteTask } = useTaskContext();
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id: task.id,
@@ -44,9 +44,26 @@ const TaskItem = ({ task, onEditTask }: Props) => {
       className="  rounded-md bg-white dark:bg-gray-800 shadow
         transition-all group flex justify-between gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-600"
     >
+      <input
+        type="checkbox"
+        checked={task.status === "completed"}
+        onChange={() =>
+          updateTask({
+            ...task,
+            status: task.status === "completed" ? "todo" : "completed",
+          })
+        }
+        className="
+    h-4 w-4
+    block sm:hidden
+    cursor-pointer
+    accent-gray-600
+    dark:accent-gray-500
+  "
+      />
       <div className="flex-1 " {...listeners}>
         <div>
-          <div className=" flex flex-wrap gap-2 text-xs">
+          <div className=" flex flex-wrap gap-2 text-xs ">
             <span
               className={`px-2 py-0.5 rounded text-xs flex items-center gap-1 ${
                 task.status === "todo"

@@ -45,7 +45,7 @@ const CreateTaskModal = ({ isOpen, onClose }: CreateTaskModalProps) => {
 
   return (
     <div>
-      <div className="absolute  top-0 left-0 bg-black/20 w-screen h-screen z-0"></div>
+      <div className="absolute  top-0 left-0 bg-black/20 w-screen h-screen z-59"></div>
       <div className="bg-white absolute rounded-lg top-25 left-0 right-0 m-auto   md:max-w-150 max-w-100 z-60">
         <h2 className="text-sm  mb-4 pt-6 px-6">New Task</h2>
         <form onSubmit={handleSubmit}>
