@@ -23,11 +23,11 @@ const sortOptions = [
 
 const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
   return (
-    <div className="flex flex-col gap-4 mt-15 w-45">
+    <div className="flex flex-col gap-4 mt-15 w-45 text-gray-900 dark:text-white">
       <div className="flex flex-col ">
         <label className="font-semibold mb-2 flex items-center gap-2">
           Priority{" "}
-          <span className="border inline-block w-full border-gray-400"></span>
+          <span className="border inline-block w-full border-gray-400 dark:border-gray-600"></span>
         </label>
         {priorityOptions.map((option) => (
           <label
@@ -42,7 +42,7 @@ const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
               onChange={(e) =>
                 setPriority(e.target.value as Task["priority"] | "all")
               }
-              className="accent-gray-600"
+              className="accent-gray-600 dark:accent-gray-400"
             />
             {option.label}
           </label>
@@ -51,7 +51,7 @@ const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
       <div className="flex flex-col">
         <label className="font-semibold mb-2 flex items-center gap-2">
           Sort{" "}
-          <span className="border inline-block w-full border-gray-400"></span>
+          <span className="border inline-block w-full border-gray-400 dark:border-gray-600"></span>
         </label>
         {sortOptions.map((option) => (
           <label
@@ -64,7 +64,7 @@ const TaskFilter = ({ priority, setPriority, sort, setSort }: Props) => {
               value={option.value}
               checked={sort === option.value}
               onChange={(e) => setSort(e.target.value)}
-              className="accent-gray-600"
+              className="accent-gray-600 dark:accent-gray-400"
             />
             {option.label}
           </label>

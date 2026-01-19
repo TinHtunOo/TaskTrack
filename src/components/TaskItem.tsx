@@ -41,8 +41,8 @@ const TaskItem = ({ task, onEditTask }: Props) => {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="  rounded-md bg-white shadow
-        transition-all group flex justify-between gap-4 p-4 hover:bg-gray-50"
+      className="  rounded-md bg-white dark:bg-gray-800 shadow
+        transition-all group flex justify-between gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700"
     >
       <div className="flex-1 " {...listeners}>
         <div>
@@ -50,10 +50,10 @@ const TaskItem = ({ task, onEditTask }: Props) => {
             <span
               className={`px-2 py-0.5 rounded text-xs flex items-center gap-1 ${
                 task.status === "todo"
-                  ? "bg-gray-100 text-gray-700"
+                  ? "bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300"
                   : task.status === "in-progress"
-                    ? "bg-blue-100 text-blue-700"
-                    : "bg-green-100 text-green-700"
+                    ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300"
+                    : "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300"
               }`}
             >
               {task.status === "todo" ? (
@@ -69,10 +69,10 @@ const TaskItem = ({ task, onEditTask }: Props) => {
             <span
               className={`px-2 py-0.5 rounded text-xs flex items-center gap-1 ${
                 task.priority === "low"
-                  ? "bg-gray-100 text-gray-600"
+                  ? "bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400"
                   : task.priority === "medium"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : "bg-red-100 text-red-700"
+                    ? "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300"
+                    : "bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300"
               }`}
             >
               {task.priority === "low" ? (
@@ -85,14 +85,18 @@ const TaskItem = ({ task, onEditTask }: Props) => {
               {task.priority}
             </span>
           </div>
-          <h3 className="font-medium mt-2">{task.title}</h3>
+          <h3 className="font-medium mt-2 text-gray-900 dark:text-white">
+            {task.title}
+          </h3>
 
           {task.description && (
-            <p className="mt-1 text-sm text-gray-500">{task.description}</p>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              {task.description}
+            </p>
           )}
-          <span className="inline-block border border-gray-300 w-full"></span>
+          <span className="inline-block border border-gray-300 dark:border-gray-600 w-full"></span>
           {task.dueDate && (
-            <span className="text-gray-400 text-xs flex gap-1 items-center mt-1">
+            <span className="text-gray-400 dark:text-gray-500 text-xs flex gap-1 items-center mt-1">
               <Calendar size={12} />{" "}
               {new Date(task.dueDate).toLocaleDateString()}
             </span>
@@ -103,7 +107,7 @@ const TaskItem = ({ task, onEditTask }: Props) => {
         <button
           type="button"
           onClick={() => onEditTask(task.id)}
-          className=" text-blue-400 hover:text-blue-600"
+          className=" text-blue-400 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400"
         >
           <SquarePen size={16} />
         </button>
@@ -111,7 +115,7 @@ const TaskItem = ({ task, onEditTask }: Props) => {
         <button
           type="button"
           onClick={handleDelete}
-          className=" text-red-400 hover:text-red-600"
+          className=" text-red-400 hover:text-red-600 dark:text-red-500 dark:hover:text-red-400"
         >
           <Trash2 size={16} />
         </button>
