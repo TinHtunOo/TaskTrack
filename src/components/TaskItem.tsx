@@ -103,7 +103,7 @@ const TaskItem = ({ task, onEditTask }: Props) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-2 items-center opacity-0 group-hover:opacity-100  transition">
+      <div className="flex flex-col gap-2 items-center sm:opacity-0 group-hover:opacity-100   transition">
         <button
           type="button"
           onClick={() => onEditTask(task.id)}
