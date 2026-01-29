@@ -57,7 +57,7 @@ const CreateTaskModal = ({ isOpen, onClose }: CreateTaskModalProps) => {
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full rounded font-semibold text-xl mb-2  focus:border-none placeholder:text-gray-400 focus:outline-0 "
                 placeholder="Add title"
-                required
+                requirede
                 autoFocus
               />
             </div>

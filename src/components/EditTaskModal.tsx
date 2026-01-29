@@ -28,7 +28,7 @@ const EditTaskModal = ({ isOpen, onClose, taskId }: EditTaskModalProps) => {
       updateTask(task);
       onClose();
     }
-  };
+  };  
 
   const handleDelete = () => {
     if (task) {

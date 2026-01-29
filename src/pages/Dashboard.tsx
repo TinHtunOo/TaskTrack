@@ -54,7 +54,9 @@ const Dashboard = () => {
   });
 
   return (
-    <div className={`flex min-h-screen relative ${isSidebarOpen ? "" : ""} `}>
+    <div
+      className={`flex  relative ${isCreateModalOpen || isEditModalOpen ? " overflow-hidden h-screen" : "min-h-screen"} `}
+    >
       <div
         className={`h-screen w-screen absolute top-0 left-0 bg-black/20 ${isSidebarOpen ? "block" : "hidden"} `}
       ></div>
